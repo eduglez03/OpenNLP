@@ -17,34 +17,32 @@ import opennlp.tools.util.PlainTextByLineStream;
 import opennlp.tools.util.TrainingParameters;
 
 
-public class SentenceDetectionTrainer
-{
-	public static void main( String[] args ) throws Exception
-	{
-		Charset charset = Charset.forName("UTF-8");				
-		ObjectStream<String> lineStream = 
-				new PlainTextByLineStream(new FileInputStream("training_data/en-sent.train"), charset);
-		ObjectStream<SentenceSample> sampleStream = new SentenceSampleStream(lineStream);
+public class SentenceDetectionTrainer {
+  public static void main( String[] args ) throws Exception {
+    Charset charset = Charset.forName("UTF-8");
+    ObjectStream<String> lineStream =
+            new PlainTextByLineStream(new FileInputStream("training_data/en-sent.train"), charset);
+    ObjectStream<SentenceSample> sampleStream = new SentenceSampleStream(lineStream);
 
-		SentenceModel model;
+    SentenceModel model;
 
-		try {
-		  model = SentenceDetectorME.train("en", sampleStream, true, null, TrainingParameters.defaultParams());
-		}
-		finally {
-		  sampleStream.close();
-		}
+    try {
+      model = SentenceDetectorME.train("en", sampleStream, true, null, TrainingParameters.defaultParams());
+    }
+    finally {
+      sampleStream.close();
+    }
 
-		OutputStream modelOut = null;
-		File modelFile = new File( "models/en-sent.model" );
-		try {
-		  modelOut = new BufferedOutputStream(new FileOutputStream(modelFile));
-		  model.serialize(modelOut);
-		} finally {
-		  if (modelOut != null) 
-		     modelOut.close();      
-		}		
-		
-		System.out.println( "done" );
-	}
+    OutputStream modelOut = null;
+    File modelFile = new File( "models/en-sent.model" );
+    try {
+      modelOut = new BufferedOutputStream(new FileOutputStream(modelFile));
+      model.serialize(modelOut);
+    } finally {
+      if (modelOut != null)
+        modelOut.close();
+    }
+
+    System.out.println( "done" );
+  }
 }

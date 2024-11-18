@@ -14,48 +14,40 @@ import opennlp.tools.parser.ParserModel;
 
 
 
-public class ParserMain
-{
-	public static void main( String[] args ) throws Exception
-	{
-		InputStream modelIn = new FileInputStream( "models/en-parser-chunking.bin" );
-		
-		try
-		{
-			ParserModel model = new ParserModel( modelIn );
-			
-			Parser parser = ParserFactory.create(model);
-			
-			String sentence = "The quick brown fox jumps over the lazy dog .";
-			
-			Parse topParses[] = ParserTool.parseLine(sentence, parser, 1);			
-			
-			Parse parse = topParses[0];
-			
-			System.out.println( parse.toString() );
-			
-			parse.showCodeTree();
-			
-		}
-		catch( IOException e )
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			if( modelIn != null )
-			{
-				try
-				{
-					modelIn.close();
-				}
-				catch( IOException e )
-				{
-				}
-			}
-		}
-		
-		
-		System.out.println( "done" );
-	}
+public class ParserMain {
+  public static void main( String[] args ) throws Exception {
+    InputStream modelIn = new FileInputStream( "models/en-parser-chunking.bin" );
+
+    try {
+      ParserModel model = new ParserModel( modelIn );
+
+      Parser parser = ParserFactory.create(model);
+
+      String sentence = "The quick brown fox jumps over the lazy dog .";
+
+      Parse topParses[] = ParserTool.parseLine(sentence, parser, 1);
+
+      Parse parse = topParses[0];
+
+      System.out.println( parse.toString() );
+
+      parse.showCodeTree();
+
+    }
+    catch( IOException e ) {
+      e.printStackTrace();
+    }
+    finally {
+      if( modelIn != null ) {
+        try {
+          modelIn.close();
+        }
+        catch( IOException e ) {
+        }
+      }
+    }
+
+
+    System.out.println( "done" );
+  }
 }

@@ -17,41 +17,34 @@ import opennlp.tools.util.PlainTextByLineStream;
 import opennlp.tools.util.TrainingParameters;
 
 
-public class TokenizerTrainer
-{
-	public static void main( String[] args ) throws Exception
-	{
-		Charset charset = Charset.forName( "UTF-8" );
-		ObjectStream<String> lineStream = new PlainTextByLineStream(
-				new FileInputStream( "training_data/en-token.train" ), charset );
-		
-		ObjectStream<TokenSample> sampleStream = new TokenSampleStream( lineStream );
-		
-		TokenizerModel model;
-		
-		try
-		{
-			model = TokenizerME.train( "en", sampleStream, true, TrainingParameters.defaultParams() );
-		}
-		finally
-		{
-			sampleStream.close();
-		}
-		
-		OutputStream modelOut = null;
-		try
-		{
-			modelOut = new BufferedOutputStream( new FileOutputStream( "models/en-token.model" ) );
-			model.serialize( modelOut );
-		}
-		finally
-		{
-			if( modelOut != null )
-			{
-				modelOut.close();
-			}
-		}
-		
-		System.out.println( "done" );
-	}
+public class TokenizerTrainer {
+  public static void main( String[] args ) throws Exception {
+    Charset charset = Charset.forName( "UTF-8" );
+    ObjectStream<String> lineStream = new PlainTextByLineStream(
+            new FileInputStream( "training_data/en-token.train" ), charset );
+
+    ObjectStream<TokenSample> sampleStream = new TokenSampleStream( lineStream );
+
+    TokenizerModel model;
+
+    try {
+      model = TokenizerME.train( "en", sampleStream, true, TrainingParameters.defaultParams() );
+    }
+    finally {
+      sampleStream.close();
+    }
+
+    OutputStream modelOut = null;
+    try {
+      modelOut = new BufferedOutputStream( new FileOutputStream( "models/en-token.model" ) );
+      model.serialize( modelOut );
+    }
+    finally {
+      if( modelOut != null ) {
+        modelOut.close();
+      }
+    }
+
+    System.out.println( "done" );
+  }
 }
