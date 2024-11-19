@@ -1,54 +1,82 @@
 
 package org.fogbeam.example.opennlp;
 
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
+import java.io.*;
 import opennlp.tools.tokenize.Tokenizer;
 import opennlp.tools.tokenize.TokenizerME;
 import opennlp.tools.tokenize.TokenizerModel;
 
-
 public class TokenizerMain {
-  public static void main( String[] args ) throws Exception {
+  public static void main(String[] args) throws Exception {
+    // Verifica que al menos un archivo de entrada ha sido proporcionado
+    if (args.length == 0) {
+      System.out.println("Por favor, proporciona uno o más archivos de entrada.");
+      return;
+    }
 
-    // the provided model
-    // InputStream modelIn = new FileInputStream( "models/en-token.bin" );
+    // Cargar el modelo de tokenización
+    InputStream modelIn = new FileInputStream("models/en-token.model");
 
+    // Crear el objeto Tokenizer
+    TokenizerModel model = new TokenizerModel(modelIn);
+    Tokenizer tokenizer = new TokenizerME(model);
 
-    // the model we trained
-    InputStream modelIn = new FileInputStream( "models/en-token.model" );
+    // El archivo de salida donde se guardarán los tokens
+    BufferedWriter writer = new BufferedWriter(new FileWriter("output_tokens.txt"));
 
     try {
-      TokenizerModel model = new TokenizerModel( modelIn );
+      // Procesar cada archivo proporcionado como argumento
+      for (String filePath : args) {
+        File inputFile = new File(filePath);
+        if (inputFile.exists() && inputFile.isFile()) {
+          System.out.println("Procesando archivo: " + filePath);
 
-      Tokenizer tokenizer = new TokenizerME(model);
+          // Leer el contenido del archivo
+          String content = readFile(inputFile);
 
-      /* note what happens with the "three depending on which model you use */
-      String[] tokens = tokenizer.tokenize
-              (  "A ranger journeying with Oglethorpe, founder of the Georgia Colony, "
-                      + " mentions \"three Mounts raised by the Indians over three of their Great Kings"
-                      + " who were killed in the Wars.\"" );
+          // Tokenizar el contenido
+          String[] tokens = tokenizer.tokenize(content);
 
-      for( String token : tokens ) {
-        System.out.println( token );
+          // Escribir los tokens al archivo de salida
+          writer.write("Tokens de: " + filePath + "\n");
+          for (String token : tokens) {
+            writer.write(token + "\n");
+          }
+          writer.write("\n-----\n");
+        } else {
+          System.out.println("El archivo " + filePath + " no existe o no es un archivo válido.");
+        }
       }
-
-    }
-    catch( IOException e ) {
+    } catch (IOException e) {
       e.printStackTrace();
-    }
-    finally {
-      if( modelIn != null ) {
+    } finally {
+      // Cerrar el archivo de salida y el modelo
+      if (modelIn != null) {
         try {
           modelIn.close();
-        }
-        catch( IOException e ) {
+        } catch (IOException e) {
+          e.printStackTrace();
         }
       }
+      try {
+        writer.close();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
     }
-    System.out.println( "\n-----\ndone" );
+
+    System.out.println("Proceso completado. Los tokens se han guardado en output_tokens.txt");
+  }
+
+  // Método para leer el contenido de un archivo
+  private static String readFile(File file) throws IOException {
+    StringBuilder content = new StringBuilder();
+    BufferedReader reader = new BufferedReader(new FileReader(file));
+    String line;
+    while ((line = reader.readLine()) != null) {
+      content.append(line).append("\n");
+    }
+    reader.close();
+    return content.toString();
   }
 }
