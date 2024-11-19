@@ -1,0 +1,67 @@
+\doxysection{org.\+fogbeam.\+example.\+opennlp.\+Name\+Finder\+Main Class Reference}
+\hypertarget{classorg_1_1fogbeam_1_1example_1_1opennlp_1_1_name_finder_main}{}\label{classorg_1_1fogbeam_1_1example_1_1opennlp_1_1_name_finder_main}\index{org.fogbeam.example.opennlp.NameFinderMain@{org.fogbeam.example.opennlp.NameFinderMain}}
+
+
+Clase principal para la detección de nombres (Named Entity Recognition) utilizando Open\+NLP.  
+
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classorg_1_1fogbeam_1_1example_1_1opennlp_1_1_name_finder_main_a48247d65390730211c23c41f939c055a}{main}} (String\mbox{[}$\,$\mbox{]} args)  throws Exception 
+\begin{DoxyCompactList}\small\item\em Método principal que realiza la detección de nombres en un conjunto de tokens. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase principal para la detección de nombres (Named Entity Recognition) utilizando Open\+NLP. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classorg_1_1fogbeam_1_1example_1_1opennlp_1_1_name_finder_main_a48247d65390730211c23c41f939c055a}\index{org.fogbeam.example.opennlp.NameFinderMain@{org.fogbeam.example.opennlp.NameFinderMain}!main@{main}}
+\index{main@{main}!org.fogbeam.example.opennlp.NameFinderMain@{org.fogbeam.example.opennlp.NameFinderMain}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{classorg_1_1fogbeam_1_1example_1_1opennlp_1_1_name_finder_main_a48247d65390730211c23c41f939c055a} 
+static void org.\+fogbeam.\+example.\+opennlp.\+Name\+Finder\+Main.\+main (\begin{DoxyParamCaption}\item[{String\mbox{[}$\,$\mbox{]}}]{args}{}\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Método principal que realiza la detección de nombres en un conjunto de tokens. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Argumentos de línea de comandos (no utilizados en este ejemplo). \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & Lanza excepciones si ocurren errores durante la ejecución. \\
+\hline
+\end{DoxyExceptions}
+Carga el modelo de detección de nombres desde un archivo.
+
+El modelo es utilizado para identificar entidades nombradas como nombres de personas.
+
+Inicializa el modelo de detección de nombres.
+
+Crea un detector de nombres basado en el modelo cargado.
+
+Tokens que representan un fragmento de texto para analizar.
+
+Detecta entidades nombradas en el conjunto de tokens.
+
+Devuelve un array de objetos {\ttfamily Span} que representan las posiciones de los nombres encontrados.
+
+Itera sobre las entidades nombradas detectadas y las imprime en la salida estándar.
+
+Limpia los datos adaptativos del detector de nombres.
+
+Esto asegura que el modelo no retenga información del texto procesado previamente.
+
+Captura y maneja errores de entrada/salida, como la carga del modelo.
+
+Cierra el flujo de entrada del modelo si está abierto.
+
+Indica que el proceso ha finalizado.
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/org/fogbeam/example/opennlp/\mbox{\hyperlink{_name_finder_main_8java}{Name\+Finder\+Main.\+java}}\end{DoxyCompactItemize}

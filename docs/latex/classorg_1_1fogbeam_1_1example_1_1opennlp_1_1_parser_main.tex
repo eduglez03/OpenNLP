@@ -1,0 +1,65 @@
+\doxysection{org.\+fogbeam.\+example.\+opennlp.\+Parser\+Main Class Reference}
+\hypertarget{classorg_1_1fogbeam_1_1example_1_1opennlp_1_1_parser_main}{}\label{classorg_1_1fogbeam_1_1example_1_1opennlp_1_1_parser_main}\index{org.fogbeam.example.opennlp.ParserMain@{org.fogbeam.example.opennlp.ParserMain}}
+
+
+Clase principal para realizar análisis sintáctico (parsing) utilizando Open\+NLP.  
+
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classorg_1_1fogbeam_1_1example_1_1opennlp_1_1_parser_main_a48bc5bcb185febfd50c3a9c1301e689e}{main}} (String\mbox{[}$\,$\mbox{]} args)  throws Exception 
+\begin{DoxyCompactList}\small\item\em Método principal que realiza el análisis sintáctico de una oración de ejemplo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase principal para realizar análisis sintáctico (parsing) utilizando Open\+NLP. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classorg_1_1fogbeam_1_1example_1_1opennlp_1_1_parser_main_a48bc5bcb185febfd50c3a9c1301e689e}\index{org.fogbeam.example.opennlp.ParserMain@{org.fogbeam.example.opennlp.ParserMain}!main@{main}}
+\index{main@{main}!org.fogbeam.example.opennlp.ParserMain@{org.fogbeam.example.opennlp.ParserMain}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{classorg_1_1fogbeam_1_1example_1_1opennlp_1_1_parser_main_a48bc5bcb185febfd50c3a9c1301e689e} 
+static void org.\+fogbeam.\+example.\+opennlp.\+Parser\+Main.\+main (\begin{DoxyParamCaption}\item[{String\mbox{[}$\,$\mbox{]}}]{args}{}\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Método principal que realiza el análisis sintáctico de una oración de ejemplo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Argumentos de línea de comandos (no se utilizan en este ejemplo). \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & Lanza excepciones en caso de errores durante la ejecución. \\
+\hline
+\end{DoxyExceptions}
+Carga el modelo de análisis sintáctico desde un archivo binario.
+
+Inicializa el modelo de análisis sintáctico.
+
+Crea un analizador sintáctico utilizando el modelo cargado.
+
+Oración de ejemplo que se analizará sintácticamente.
+
+Realiza el análisis sintáctico de la oración.
+
+Se genera un array de resultados del análisis sintáctico (Parse) con una sola interpretación.
+
+Obtiene el primer (y único) resultado del análisis sintáctico.
+
+Imprime la representación textual del análisis sintáctico.
+
+Muestra el árbol sintáctico generado en la salida estándar.
+
+Captura y maneja errores relacionados con la entrada/salida, como la carga del modelo.
+
+Cierra el flujo de entrada del modelo si está abierto.
+
+Indica que el proceso ha finalizado.
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/org/fogbeam/example/opennlp/\mbox{\hyperlink{_parser_main_8java}{Parser\+Main.\+java}}\end{DoxyCompactItemize}

@@ -1,0 +1,46 @@
+\doxysection{org.\+fogbeam.\+example.\+opennlp.\+Tokenizer\+Main Class Reference}
+\hypertarget{classorg_1_1fogbeam_1_1example_1_1opennlp_1_1_tokenizer_main}{}\label{classorg_1_1fogbeam_1_1example_1_1opennlp_1_1_tokenizer_main}\index{org.fogbeam.example.opennlp.TokenizerMain@{org.fogbeam.example.opennlp.TokenizerMain}}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classorg_1_1fogbeam_1_1example_1_1opennlp_1_1_tokenizer_main_a957e2ce0b42d88a63fe225dd240d5e95}{main}} (String\mbox{[}$\,$\mbox{]} args)  throws Exception 
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase principal para tokenizar el contenido de archivos de texto. Utiliza Open\+NLP para dividir texto en tokens. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classorg_1_1fogbeam_1_1example_1_1opennlp_1_1_tokenizer_main_a957e2ce0b42d88a63fe225dd240d5e95}\index{org.fogbeam.example.opennlp.TokenizerMain@{org.fogbeam.example.opennlp.TokenizerMain}!main@{main}}
+\index{main@{main}!org.fogbeam.example.opennlp.TokenizerMain@{org.fogbeam.example.opennlp.TokenizerMain}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{classorg_1_1fogbeam_1_1example_1_1opennlp_1_1_tokenizer_main_a957e2ce0b42d88a63fe225dd240d5e95} 
+static void org.\+fogbeam.\+example.\+opennlp.\+Tokenizer\+Main.\+main (\begin{DoxyParamCaption}\item[{String\mbox{[}$\,$\mbox{]}}]{args}{}\end{DoxyParamCaption}) throws Exception\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Método principal del programa. Procesa uno o más archivos proporcionados como argumentos y guarda los tokens en un archivo de salida.
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Argumentos de línea de comandos que representan rutas a archivos de entrada. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exception} & Si ocurre un error durante la ejecución. \\
+\hline
+\end{DoxyExceptions}
+Carga el modelo de tokenización desde el archivo especificado.
+
+Crea un objeto Tokenizer utilizando el modelo cargado.
+
+Archivo de salida donde se escribirán los tokens generados.
+
+Verifica si el archivo de entrada existe y es válido.
+
+Tokeniza el contenido del archivo.
+
+Escribe los tokens generados en el archivo de salida.
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/main/java/org/fogbeam/example/opennlp/\mbox{\hyperlink{_tokenizer_main_8java}{Tokenizer\+Main.\+java}}\end{DoxyCompactItemize}
