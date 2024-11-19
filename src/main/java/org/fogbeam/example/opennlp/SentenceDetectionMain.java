@@ -1,6 +1,4 @@
-
 package org.fogbeam.example.opennlp;
-
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -9,62 +7,94 @@ import java.io.InputStream;
 import opennlp.tools.sentdetect.SentenceDetectorME;
 import opennlp.tools.sentdetect.SentenceModel;
 
-
+/**
+ * Clase principal para la detección de oraciones.
+ * Utiliza OpenNLP para dividir texto en oraciones utilizando un modelo preentrenado.
+ */
 public class SentenceDetectionMain {
-  public static void main( String[] args ) throws Exception {
-    InputStream modelIn = new FileInputStream( "models/en-sent.model" );
-    InputStream demoDataIn = new FileInputStream( "demo_data/en-sent1.demo" );
 
+  /**
+   * Método principal que carga un modelo de detección de oraciones y procesa datos de ejemplo.
+   *
+   * @param args Argumentos de línea de comandos (no se usan en este ejemplo).
+   * @throws Exception Si ocurre un error durante la ejecución.
+   */
+  public static void main(String[] args) throws Exception {
+    /**
+     * Flujo de entrada para el modelo de detección de oraciones.
+     */
+    InputStream modelIn = new FileInputStream("models/en-sent.model");
 
+    /**
+     * Flujo de entrada para los datos de ejemplo que serán procesados.
+     */
+    InputStream demoDataIn = new FileInputStream("demo_data/en-sent1.demo");
 
     try {
-      SentenceModel model = new SentenceModel( modelIn );
+      /**
+       * Carga el modelo de detección de oraciones.
+       */
+      SentenceModel model = new SentenceModel(modelIn);
+
+      /**
+       * Crea un detector de oraciones basado en el modelo cargado.
+       */
       SentenceDetectorME sentenceDetector = new SentenceDetectorME(model);
 
-      String demoData = convertStreamToString( demoDataIn );
+      /**
+       * Convierte el flujo de entrada de los datos de ejemplo a una cadena.
+       */
+      String demoData = convertStreamToString(demoDataIn);
 
-      String sentences[] = sentenceDetector.sentDetect( demoData );
+      /**
+       * Detecta oraciones en los datos de ejemplo.
+       */
+      String sentences[] = sentenceDetector.sentDetect(demoData);
 
-      for( String sentence : sentences ) {
-        System.out.println( sentence + "\n" );
+      /**
+       * Imprime las oraciones detectadas en la consola.
+       */
+      for (String sentence : sentences) {
+        System.out.println(sentence + "\n");
       }
-
-
-
-    }
-    catch( IOException e ) {
+    } catch (IOException e) {
       e.printStackTrace();
-    }
-    finally {
-      if( modelIn != null ) {
+    } finally {
+      /**
+       * Cierra el flujo de entrada del modelo si está abierto.
+       */
+      if (modelIn != null) {
         try {
           modelIn.close();
-        }
-        catch( IOException e ) {
+        } catch (IOException e) {
+          e.printStackTrace();
         }
       }
 
-
-      if( demoDataIn != null ) {
+      /**
+       * Cierra el flujo de entrada de los datos de ejemplo si está abierto.
+       */
+      if (demoDataIn != null) {
         try {
           demoDataIn.close();
-        }
-        catch( IOException e ) {
+        } catch (IOException e) {
+          e.printStackTrace();
         }
       }
-
-
     }
 
-
-    System.out.println( "done" );
-
+    System.out.println("done");
   }
 
-
+  /**
+   * Convierte un flujo de entrada en una cadena de texto.
+   *
+   * @param is Flujo de entrada que se desea convertir.
+   * @return El contenido del flujo de entrada como una cadena.
+   */
   static String convertStreamToString(java.io.InputStream is) {
     java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
     return s.hasNext() ? s.next() : "";
   }
-
 }
+
