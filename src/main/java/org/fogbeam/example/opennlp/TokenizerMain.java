@@ -1,4 +1,3 @@
-
 package org.fogbeam.example.opennlp;
 
 import java.io.*;
@@ -6,7 +5,19 @@ import opennlp.tools.tokenize.Tokenizer;
 import opennlp.tools.tokenize.TokenizerME;
 import opennlp.tools.tokenize.TokenizerModel;
 
+/**
+ * Clase principal para tokenizar el contenido de archivos de texto.
+ * Utiliza OpenNLP para dividir texto en tokens.
+ */
 public class TokenizerMain {
+
+  /**
+   * Método principal del programa.
+   * Procesa uno o más archivos proporcionados como argumentos y guarda los tokens en un archivo de salida.
+   *
+   * @param args Argumentos de línea de comandos que representan rutas a archivos de entrada.
+   * @throws Exception Si ocurre un error durante la ejecución.
+   */
   public static void main(String[] args) throws Exception {
     // Verifica que al menos un archivo de entrada ha sido proporcionado
     if (args.length == 0) {
@@ -14,30 +25,44 @@ public class TokenizerMain {
       return;
     }
 
-    // Cargar el modelo de tokenización
+    /**
+     * Carga el modelo de tokenización desde el archivo especificado.
+     */
     InputStream modelIn = new FileInputStream("models/en-token.model");
 
-    // Crear el objeto Tokenizer
+    /**
+     * Crea un objeto Tokenizer utilizando el modelo cargado.
+     */
     TokenizerModel model = new TokenizerModel(modelIn);
     Tokenizer tokenizer = new TokenizerME(model);
 
-    // El archivo de salida donde se guardarán los tokens
+    /**
+     * Archivo de salida donde se escribirán los tokens generados.
+     */
     BufferedWriter writer = new BufferedWriter(new FileWriter("output_tokens.txt"));
 
     try {
       // Procesar cada archivo proporcionado como argumento
       for (String filePath : args) {
         File inputFile = new File(filePath);
+
+        /**
+         * Verifica si el archivo de entrada existe y es válido.
+         */
         if (inputFile.exists() && inputFile.isFile()) {
           System.out.println("Procesando archivo: " + filePath);
 
           // Leer el contenido del archivo
           String content = readFile(inputFile);
 
-          // Tokenizar el contenido
+          /**
+           * Tokeniza el contenido del archivo.
+           */
           String[] tokens = tokenizer.tokenize(content);
 
-          // Escribir los tokens al archivo de salida
+          /**
+           * Escribe los tokens generados en el archivo de salida.
+           */
           writer.write("Tokens de: " + filePath + "\n");
           for (String token : tokens) {
             writer.write(token + "\n");
@@ -50,7 +75,7 @@ public class TokenizerMain {
     } catch (IOException e) {
       e.printStackTrace();
     } finally {
-      // Cerrar el archivo de salida y el modelo
+      // Cierra el archivo de salida y el modelo
       if (modelIn != null) {
         try {
           modelIn.close();
@@ -68,7 +93,13 @@ public class TokenizerMain {
     System.out.println("Proceso completado. Los tokens se han guardado en output_tokens.txt");
   }
 
-  // Método para leer el contenido de un archivo
+  /**
+   * Lee el contenido de un archivo y lo devuelve como una cadena de texto.
+   *
+   * @param file Archivo que se desea leer.
+   * @return Contenido del archivo como una cadena.
+   * @throws IOException Si ocurre un error al leer el archivo.
+   */
   private static String readFile(File file) throws IOException {
     StringBuilder content = new StringBuilder();
     BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -80,3 +111,4 @@ public class TokenizerMain {
     return content.toString();
   }
 }
+
