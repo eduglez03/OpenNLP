@@ -1,6 +1,4 @@
-
 package org.fogbeam.example.opennlp;
-
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -9,51 +7,84 @@ import java.io.InputStream;
 import opennlp.tools.postag.POSModel;
 import opennlp.tools.postag.POSTaggerME;
 
-
+/**
+ * Clase principal para la etiquetación de partes de la oración (POS tagging).
+ * Utiliza OpenNLP para etiquetar tokens con sus respectivas categorías gramaticales.
+ */
 public class PartOfSpeechTaggerMain {
-  public static void main( String[] args ) {
+
+  /**
+   * Método principal que carga un modelo de etiquetación de partes de la oración y procesa una oración de ejemplo.
+   *
+   * @param args Argumentos de línea de comandos (no se usan en este ejemplo).
+   */
+  public static void main(String[] args) {
+    /**
+     * Flujo de entrada para cargar el modelo de etiquetación POS.
+     */
     InputStream modelIn = null;
+
     try {
-      // modelIn = new FileInputStream( "models/en-pos.model" );
-      modelIn = new FileInputStream( "models/en-pos-maxent.bin" );
+      // Carga del modelo POS desde un archivo.
+      // Descomentar la línea adecuada dependiendo del formato del modelo.
+      // modelIn = new FileInputStream("models/en-pos.model");
+      modelIn = new FileInputStream("models/en-pos-maxent.bin");
 
-      POSModel model = new POSModel( modelIn );
+      /**
+       * Carga el modelo de etiquetación de partes de la oración.
+       */
+      POSModel model = new POSModel(modelIn);
 
-
+      /**
+       * Crea un etiquetador POS basado en el modelo cargado.
+       */
       POSTaggerME tagger = new POSTaggerME(model);
 
-      String sent[] = new String[]{"Most", "large", "cities", "in", "the", "US", "had",
-              "morning", "and", "afternoon", "newspapers", "."};
+      /**
+       * Oración de ejemplo a etiquetar.
+       */
+      String sent[] = new String[] {
+              "Most", "large", "cities", "in", "the", "US", "had",
+              "morning", "and", "afternoon", "newspapers", "."
+      };
+
+      /**
+       * Etiqueta cada token de la oración con su categoría gramatical.
+       */
       String tags[] = tagger.tag(sent);
 
+      /**
+       * Calcula las probabilidades asociadas a cada etiqueta.
+       */
       double probs[] = tagger.probs();
 
-
-      for( int i = 0; i < sent.length; i++ ) {
-        System.out.println( "Token [" + sent[i] + "] has POS [" + tags[i] + "] with probability = " + probs[i] );
+      /**
+       * Imprime cada token con su etiqueta y su probabilidad asociada.
+       */
+      for (int i = 0; i < sent.length; i++) {
+        System.out.println(
+                "Token [" + sent[i] + "] has POS [" + tags[i] + "] with probability = " + probs[i]);
       }
 
-
-    }
-    catch( IOException e ) {
-      // Model loading failed, handle the error
+    } catch (IOException e) {
+      /**
+       * Manejo de errores en caso de fallo al cargar el modelo.
+       */
       e.printStackTrace();
-    }
-    finally {
-      if( modelIn != null ) {
+    } finally {
+      /**
+       * Cierra el flujo de entrada del modelo si está abierto.
+       */
+      if (modelIn != null) {
         try {
           modelIn.close();
-        }
-        catch( IOException e ) {
+        } catch (IOException e) {
+          e.printStackTrace();
         }
       }
     }
 
-
-
-
-
-
-    System.out.println( "done" );
+    System.out.println("done");
   }
 }
+
