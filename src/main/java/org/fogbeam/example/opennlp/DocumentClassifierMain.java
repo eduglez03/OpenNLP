@@ -63,7 +63,7 @@ public class DocumentClassifierMain {
       System.out.println("Input classified as: " + category);
 
     } catch (Exception e) {
-        logger.severe("Error en la clasificación de documentos: " + e.getMessage());
+        logger.severe("Error" + e.getMessage());
   } finally {
       /**
        * @brief Cierra el flujo de entrada del modelo para liberar recursos.
