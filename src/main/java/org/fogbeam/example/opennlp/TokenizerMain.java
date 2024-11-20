@@ -11,6 +11,11 @@ import opennlp.tools.tokenize.TokenizerModel;
  */
 public class TokenizerMain {
 
+    /**
+     * Logger para mostrar mensajes de error.
+     */
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TokenizerMain.class.getName());
+
   /**
    * Método principal del programa.
    * Procesa uno o más archivos proporcionados como argumentos y guarda los tokens en un archivo de salida.
@@ -72,21 +77,21 @@ public class TokenizerMain {
           System.out.println("El archivo " + filePath + " no existe o no es un archivo válido.");
         }
       }
-    } catch (IOException e) {
-      e.printStackTrace();
+    } catch (Exception e) {
+      logger.severe("Error" + e.getMessage());
     } finally {
       // Cierra el archivo de salida y el modelo
       if (modelIn != null) {
         try {
           modelIn.close();
-        } catch (IOException e) {
-          e.printStackTrace();
+        } catch (Exception e) {
+          logger.severe("Error" + e.getMessage());
         }
       }
       try {
         writer.close();
-      } catch (IOException e) {
-        e.printStackTrace();
+      } catch (Exception e) {
+        logger.severe("Error" + e.getMessage());
       }
     }
 
