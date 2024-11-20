@@ -3,6 +3,7 @@ package org.fogbeam.example.opennlp;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Logger;
 
 import opennlp.tools.namefind.NameFinderME;
 import opennlp.tools.namefind.TokenNameFinderModel;
@@ -12,6 +13,8 @@ import opennlp.tools.util.Span;
  * @brief Clase principal para la detección de nombres (Named Entity Recognition) utilizando OpenNLP.
  */
 public class NameFinderMain {
+
+  private static final Logger logger = Logger.getLogger(DocumentClassifierMain.class.getName());
 
   /**
    * @brief Método principal que realiza la detección de nombres en un conjunto de tokens.
@@ -73,11 +76,8 @@ public class NameFinderMain {
        */
       nameFinder.clearAdaptiveData();
 
-    } catch (IOException e) {
-      /**
-       * @brief Captura y maneja errores de entrada/salida, como la carga del modelo.
-       */
-      e.printStackTrace();
+    } catch (Exception e) {
+      logger.severe("Error" + e.getMessage());
     } finally {
       /**
        * @brief Cierra el flujo de entrada del modelo si está abierto.
