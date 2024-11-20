@@ -13,6 +13,11 @@ import opennlp.tools.postag.POSTaggerME;
  */
 public class PartOfSpeechTaggerMain {
 
+    /**
+     * Logger para mostrar mensajes de error.
+     */
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PartOfSpeechTaggerMain.class.getName());
+
   /**
    * Método principal que carga un modelo de etiquetación de partes de la oración y procesa una oración de ejemplo.
    *
@@ -66,11 +71,8 @@ public class PartOfSpeechTaggerMain {
                 "Token [" + sent[i] + "] has POS [" + tags[i] + "] with probability = " + probs[i]);
       }
 
-    } catch (IOException e) {
-      /**
-       * Manejo de errores en caso de fallo al cargar el modelo.
-       */
-      e.printStackTrace();
+    } catch (Exception e) {
+      logger.severe("Error" + e.getMessage());
     } finally {
       /**
        * Cierra el flujo de entrada del modelo si está abierto.
@@ -78,8 +80,8 @@ public class PartOfSpeechTaggerMain {
       if (modelIn != null) {
         try {
           modelIn.close();
-        } catch (IOException e) {
-          e.printStackTrace();
+        } catch (Exception e) {
+          logger.severe("Error" + e.getMessage());
         }
       }
     }
