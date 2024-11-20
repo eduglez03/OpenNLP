@@ -2,6 +2,7 @@ package org.fogbeam.example.opennlp;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.logging.Logger;
 
 import opennlp.tools.doccat.DoccatModel;
 import opennlp.tools.doccat.DocumentCategorizerME;
@@ -10,6 +11,8 @@ import opennlp.tools.doccat.DocumentCategorizerME;
  * @brief Clase principal para clasificar documentos usando un modelo de OpenNLP.
  */
 public class DocumentClassifierMain {
+
+  private static final Logger logger = Logger.getLogger(DocumentClassifierMain.class.getName());
 
   /**
    * @brief Método principal que ejecuta la clasificación de un documento basado en un modelo de categorización.
@@ -60,12 +63,8 @@ public class DocumentClassifierMain {
       System.out.println("Input classified as: " + category);
 
     } catch (Exception e) {
-      /**
-       * @brief Maneja excepciones que pueden ocurrir durante la carga del modelo o la clasificación.
-       */
-      e.printStackTrace();
-
-    } finally {
+        logger.severe("Error en la clasificación de documentos: " + e.getMessage());
+  } finally {
       /**
        * @brief Cierra el flujo de entrada del modelo para liberar recursos.
        */
