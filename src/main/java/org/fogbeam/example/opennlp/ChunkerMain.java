@@ -87,8 +87,7 @@ public class ChunkerMain {
       /**
        * @brief Maneja errores al cargar el modelo.
        */
-      e.printStackTrace();
-
+      System.err.println("Error al cargar el modelo de chunking. Por favor, revise el archivo de entrada.");
     } finally {
       /**
        * @brief Libera el recurso del modelo.
