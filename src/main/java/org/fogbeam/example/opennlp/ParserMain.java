@@ -14,6 +14,7 @@ import opennlp.tools.parser.ParserModel;
  * @brief Clase principal para realizar análisis sintáctico (parsing) utilizando OpenNLP.
  */
 public class ParserMain {
+  private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ParserMain.class.getName());
 
   /**
    * @brief Método principal que realiza el análisis sintáctico de una oración de ejemplo.
@@ -63,11 +64,8 @@ public class ParserMain {
        */
       parse.showCodeTree();
 
-    } catch (IOException e) {
-      /**
-       * @brief Captura y maneja errores relacionados con la entrada/salida, como la carga del modelo.
-       */
-      e.printStackTrace();
+    } catch (Exception e) {
+      logger.severe("Error" + e.getMessage());
     } finally {
       /**
        * @brief Cierra el flujo de entrada del modelo si está abierto.
