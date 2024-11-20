@@ -3,6 +3,7 @@ package org.fogbeam.example.opennlp;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Logger;
 
 import opennlp.tools.chunker.ChunkerME;
 import opennlp.tools.chunker.ChunkerModel;
@@ -12,6 +13,8 @@ import opennlp.tools.chunker.ChunkerModel;
  * @details El chunking identifica frases nominales, verbales, y otros tipos de chunks en una secuencia de tokens.
  */
 public class ChunkerMain {
+  // Definición del logger en la clase
+  private static final Logger logger = Logger.getLogger(ChunkerMain.class.getName());
 
   /**
    * @brief Método principal que ejecuta el chunking sobre una oración.
@@ -84,10 +87,7 @@ public class ChunkerMain {
       }
 
     } catch (IOException e) {
-      /**
-       * @brief Maneja errores al cargar el modelo.
-       */
-      System.err.println("Error al cargar el modelo de chunking. Por favor, revise el archivo de entrada.");
+      logger.severe("Error al cargar el modelo de chunking: " + e.getMessage());
     } finally {
       /**
        * @brief Libera el recurso del modelo.
