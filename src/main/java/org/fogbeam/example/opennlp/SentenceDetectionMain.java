@@ -13,6 +13,11 @@ import opennlp.tools.sentdetect.SentenceModel;
  */
 public class SentenceDetectionMain {
 
+    /**
+     * Logger para mostrar mensajes de error.
+     */
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SentenceDetectionMain.class.getName());
+
   /**
    * Método principal que carga un modelo de detección de oraciones y procesa datos de ejemplo.
    *
@@ -57,8 +62,8 @@ public class SentenceDetectionMain {
       for (String sentence : sentences) {
         System.out.println(sentence + "\n");
       }
-    } catch (IOException e) {
-      e.printStackTrace();
+    } catch (Exception e) {
+      logger.severe("Error" + e.getMessage());
     } finally {
       /**
        * Cierra el flujo de entrada del modelo si está abierto.
@@ -66,8 +71,8 @@ public class SentenceDetectionMain {
       if (modelIn != null) {
         try {
           modelIn.close();
-        } catch (IOException e) {
-          e.printStackTrace();
+        } catch (Exception e) {
+          logger.severe("Error" + e.getMessage());
         }
       }
 
@@ -77,8 +82,8 @@ public class SentenceDetectionMain {
       if (demoDataIn != null) {
         try {
           demoDataIn.close();
-        } catch (IOException e) {
-          e.printStackTrace();
+        } catch (Exception e) {
+          logger.severe("Error" + e.getMessage());
         }
       }
     }
